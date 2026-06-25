@@ -1,0 +1,99 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+>>
+>>
+>>
+endobj
+
+4 0 obj
+<<
+/Length 200
+>>
+stream
+BT
+/F1 12 Tf
+50 750 Td
+(Shannon's Recruiting Packet) Tj
+0 -20 Td
+(Class of 2026) Tj
+0 -20 Td
+(Softball Player) Tj
+0 -40 Td
+(Contact Information:) Tj
+0 -20 Td
+(Email: shannon.recruiting@email.com) Tj
+0 -20 Td
+(Phone: (123) 456-7890) Tj
+0 -20 Td
+(Location: Anytown, State) Tj
+0 -40 Td
+(Academic Information:) Tj
+0 -20 Td
+(GPA: 3.8 Weighted) Tj
+0 -20 Td
+(Class Rank: 15/200) Tj
+0 -20 Td
+(SAT Score: 1250) Tj
+0 -40 Td
+(Athletic Information:) Tj
+0 -20 Td
+(Primary Position: Infielder) Tj
+0 -20 Td
+(Secondary Position: Outfielder) Tj
+0 -20 Td
+(Batting Average: .385) Tj
+0 -20 Td
+(Home Runs: 15) Tj
+0 -20 Td
+(Fielding Percentage: .965) Tj
+ET
+endstream
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000250 00000 n 
+0000000500 00000 n 
+trailer
+<<
+/Size 6
+/Root 1 0 R
+>>
+startxref
+580
+%%EOF
