@@ -60,6 +60,7 @@
 - [x] Academics: Class Rank 207/754 (Top 30%), SAT → "Not Yet Taken"
 - [x] Built real one-page recruiting packet (`recruiting-packet.html` → `assets/recruiting-packet.pdf`)
 - [x] Added scannable QR code (`site-qr.svg`) to packet footer; friendly download filename
+- [x] Download filename set to `Shannon-Hall-2028-Recruiting.pdf` (via `download` attribute on Contact button)
 
 ## Completed Tasks
 - [x] Project brief creation

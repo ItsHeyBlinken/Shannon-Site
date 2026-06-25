@@ -69,6 +69,11 @@ Populating the site and recruiting packet with real content (stats, academics, v
 - Verified in-browser: QR displays at 80px with quiet zone, text URL removed, one-page layout intact.
 - Decision: user supplied an alternative 256px `Site-QR.png`, but we kept the generated `site-qr.svg` (vector = always crisp in print, known-direct link to the domain). The PNG was deleted by the user. **Active QR asset: `assets/stills/site-qr.svg`.**
 
+## Session Log — 2026-06-25: Download filename for recruiting packet
+- Updated the Contact section download button: `download="Shannon-Hall-2028-Recruiting.pdf"` (was `Shannon-Hall-Softball-Recruiting-Profile.pdf`).
+- Repo file remains `assets/recruiting-packet.pdf`; the `download` attribute renames the file when coaches save it over http/https (Coolify deploy).
+- No CSS rebuild required.
+
 ## Recent Changes
 - Complete website structure built with all sections
 - Modern, responsive CSS with softball-themed design
