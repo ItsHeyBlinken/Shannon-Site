@@ -11,12 +11,14 @@
 
 ## What's Left to Build
 - [x] Replace placeholder videos with real highlight clips (9 clips integrated 2026-06-24)
+- [x] Update statistics with real Fall 2025–Spring 2026 numbers (2026-06-25)
+- [x] Update academics (GPA, class rank 207/754, SAT N/A) (2026-06-25)
+- [x] Real downloadable recruiting packet PDF + QR code (2026-06-25)
 - [ ] Compress & re-add the 3 oversized clips (Training-batting 562MB, Compilation 92MB, 13highlights 71MB) — currently excluded
-- [ ] Replace remaining placeholder photos (hero/about/athletics images referenced in index.html are missing from assets/stills)
-- [ ] Update personal information and statistics
-- [ ] Add real social media links
+- [ ] Replace remaining placeholder photos (verify hero/about/athletics image paths in index.html resolve in assets/stills)
+- [ ] Add real social media links (About section Instagram/Twitter still `href="#"`)
 - [ ] Test on various devices and browsers
-- [ ] Deploy to VPS
+- [ ] Deploy via Coolify (Static build pack)
 
 ## Current Status
 **Phase 1: Foundation** ✅
@@ -44,13 +46,20 @@
 - Several still-image `src`s in `index.html` may point to files missing from `assets/stills/` — verify before deploy.
 - Styling is prebuilt Tailwind in `dist/style.css` (not CDN). Rebuild locally after class changes.
 
-## Completed This Session (2026-06-24)
+## Completed (2026-06-24)
 - [x] Integrated 9 real highlight videos with orientation-aware cards (16:9 + 9:16)
 - [x] Rebuilt video gallery cards with Tailwind
 - [x] Fixed mobile horizontal scrollbar (412px footer overflow)
 - [x] Fixed favicon 404, removed unused Unsplash preload
 - [x] Tailwind production build (`dist/style.css`); removed CDN
 - [x] Coolify deploy approach documented: Static build pack, repo root, no build command
+
+## Completed (2026-06-25)
+- [x] Real Fall 2025–Spring 2026 stats (batting + pitching); removed Fielding tab + non-matching stats
+- [x] Hero cards updated (BA .577, RBIs 14, GPA 4.1); season label added
+- [x] Academics: Class Rank 207/754 (Top 30%), SAT → "Not Yet Taken"
+- [x] Built real one-page recruiting packet (`recruiting-packet.html` → `assets/recruiting-packet.pdf`)
+- [x] Added scannable QR code (`site-qr.svg`) to packet footer; friendly download filename
 
 ## Completed Tasks
 - [x] Project brief creation

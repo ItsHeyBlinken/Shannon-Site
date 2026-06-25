@@ -1,7 +1,7 @@
 # Active Context: Shannon's Softball Portfolio Development
 
 ## Current Work Focus
-Integrating real highlight videos into the Videos section, replacing placeholder data. Mobile-friendliness is a hard requirement (coach-facing recruiting site).
+Populating the site and recruiting packet with real content (stats, academics, videos, downloadable PDF profile). Mobile-friendliness is a hard requirement (coach-facing recruiting site). Deploys via Coolify (Static build pack).
 
 ## Session Log — 2026-06-24: Real video integration
 - Replaced the 6 placeholder entries in `js/video-player.js` (`videoData`) with 9 real clips from `assets/videos/` (5 landscape 1920x1080 + 4 portrait 1080x1920).
@@ -52,6 +52,22 @@ Integrating real highlight videos into the Videos section, replacing placeholder
 - Synced `js/stats.js` `statsData` to match (batting + pitching only, fielding removed); added `ops` to `formatStatLabel`. Note: season-comparison feature was already non-functional (references `.tab-btn.active` which doesn't exist); previous values mirror current as placeholders.
 - Added season label under the Statistics heading: "Fall 2025 – Spring 2026 Season".
 - Rebuilt `dist/style.css`; no lint errors.
+
+## Session Log — 2026-06-25: Real recruiting packet PDF
+- Replaced the 1.3 KB placeholder `assets/recruiting-packet.pdf` with a real one-page profile.
+- Created `recruiting-packet.html` — print-optimized (US Letter, `@page` margins, `print-color-adjust: exact`), self-contained inline CSS matching the site palette (Inter + Playfair). Source kept so the packet can be regenerated when stats change.
+- Content (site data only, per request): name, Class of 2028, P/OF/1B, bats/throws L/L, hometown, teams (Glory Adkins 18u Demoss; prev MTX Cardinals 16u), achievements (2x All-Star, Team MVP 2025), Fall 2025–Spring 2026 stats (BA .577 / OBP .662 / SLG .889 / OPS 1.551 / RBI 14; ERA 3.33 / IP 4.1), academics (4.1 GPA, 207/754 Top 30%, SAT Not Yet Taken, Sports Business/Management), NHS + FCCLA Captain, contact + site URL, hero2.jpg photo.
+- **PDF generation method:** headless Chrome → `chrome --headless=new --no-pdf-header-footer --print-to-pdf` against the page served locally. To regenerate: serve the folder, run that command pointing at `recruiting-packet.html`, output to `assets/recruiting-packet.pdf`. (Edge works identically if Chrome is absent.)
+- Download button now uses `download="Shannon-Hall-Softball-Recruiting-Profile.pdf"` for a friendly filename.
+- Verified rendering in-browser: clean one-page layout, all data accurate.
+
+## Session Log — 2026-06-25: QR code on recruiting packet
+- Replaced the plain-text site URL in the packet footer (looked bad as a subdomain) with a QR code + "Scan Me — Full Profile & Highlight Videos" label.
+- Generated `assets/stills/site-qr.svg` with Python `qrcode` (pip-installed locally): `ERROR_CORRECT_M`, `border=4` (standard quiet zone for reliable print scanning), SVG factory (no Pillow needed). Encodes `https://skittles-softball.bytesbyblinken.com`.
+- To regenerate the QR (if URL changes): `python -c "import qrcode, qrcode.image.svg as svg; qr=qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M, border=4); qr.add_data('<URL>'); qr.make(fit=True); qr.make_image(image_factory=svg.SvgPathImage).save('assets/stills/site-qr.svg')"`
+- Re-rendered `assets/recruiting-packet.pdf` (~727 KB) via headless Chrome (same method as before).
+- Verified in-browser: QR displays at 80px with quiet zone, text URL removed, one-page layout intact.
+- Decision: user supplied an alternative 256px `Site-QR.png`, but we kept the generated `site-qr.svg` (vector = always crisp in print, known-direct link to the domain). The PNG was deleted by the user. **Active QR asset: `assets/stills/site-qr.svg`.**
 
 ## Recent Changes
 - Complete website structure built with all sections

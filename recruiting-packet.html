@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shannon Hall - Softball Recruiting Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #80A1BA;
+            --secondary: #91C4C3;
+            --accent: #B4DEBD;
+            --cream: #FFF7DD;
+            --ink: #1f2937;
+            --muted: #6b7280;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        @page {
+            size: Letter;
+            margin: 0;
+        }
+
+        html, body {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+            background: #ffffff;
+            width: 8.5in;
+            min-height: 11in;
+            margin: 0 auto;
+        }
+
+        .page {
+            padding: 0.45in 0.55in;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 14px;
+            padding: 18px 22px;
+        }
+        .header img.logo {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+            flex-shrink: 0;
+        }
+        .header .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.05;
+        }
+        .header .tagline {
+            font-size: 13.5px;
+            font-weight: 500;
+            margin-top: 4px;
+            opacity: 0.97;
+        }
+        .header .grad {
+            margin-left: auto;
+            text-align: center;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 10px;
+            padding: 8px 14px;
+            flex-shrink: 0;
+        }
+        .header .grad .big { font-size: 22px; font-weight: 800; font-family: 'Playfair Display', serif; }
+        .header .grad .small { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+        /* Body grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 2.35in 1fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .photo {
+            width: 100%;
+            height: 2.9in;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid var(--cream);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+
+        .card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: #fff;
+        }
+        .card + .card { margin-top: 12px; }
+
+        .card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 9px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+
+        .facts li {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12.5px;
+            padding: 3px 0;
+        }
+        .facts li span:first-child { color: var(--muted); font-weight: 500; }
+        .facts li span:last-child { font-weight: 700; text-align: right; }
+
+        /* Stats */
+        .stat-block-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 2px 0 8px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+        .stat-grid.pitching { grid-template-columns: repeat(2, 1fr); max-width: 2.4in; }
+        .stat {
+            background: linear-gradient(135deg, rgba(128,161,186,0.10), rgba(145,196,195,0.16));
+            border: 1px solid rgba(128,161,186,0.30);
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px 4px;
+        }
+        .stat .val { font-size: 19px; font-weight: 800; color: var(--primary); font-family: 'Playfair Display', serif; }
+        .stat .lab { font-size: 8.5px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 3px; }
+        .season-note { font-size: 10px; color: var(--muted); margin-top: 8px; font-style: italic; }
+
+        .two-col-list { columns: 2; column-gap: 18px; }
+        .bullets li {
+            list-style: none;
+            position: relative;
+            padding-left: 16px;
+            font-size: 12.5px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            break-inside: avoid;
+        }
+        .bullets li::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 6px;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .info-block .k { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 600; }
+        .info-block .v { font-size: 13px; font-weight: 700; margin-top: 2px; }
+
+        /* Contact footer */
+        .contact {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 26px;
+            align-items: center;
+            background: var(--cream);
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+        .contact .item { display: flex; flex-direction: column; }
+        .contact .k { font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; }
+        .contact .v { font-size: 13px; font-weight: 700; color: var(--ink); }
+        .contact .qr {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact .qr img {
+            width: 80px;
+            height: 80px;
+            display: block;
+            background: #fff;
+            padding: 3px;
+            border-radius: 6px;
+        }
+        .contact .qr .label {
+            text-align: right;
+            max-width: 1.5in;
+        }
+        .contact .qr .label .k { font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; }
+        .contact .qr .label .v { font-size: 11.5px; font-weight: 700; color: var(--primary); line-height: 1.25; }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <div class="header">
+            <img class="logo" src="assets/stills/Skittles Softball Logo.png" alt="Logo">
+            <div>
+                <div class="name">Shannon Hall</div>
+                <div class="tagline">Pitcher &bull; Outfielder &bull; First Base &nbsp;|&nbsp; Bats: Left / Throws: Left</div>
+            </div>
+            <div class="grad">
+                <div class="big">2028</div>
+                <div class="small">Class of</div>
+            </div>
+        </div>
+
+        <!-- Main grid -->
+        <div class="grid">
+            <!-- Left column -->
+            <div>
+                <img class="photo" src="assets/stills/hero2.jpg" alt="Shannon Hall">
+                <div class="card" style="margin-top:12px;">
+                    <h3>Player Profile</h3>
+                    <ul class="facts">
+                        <li><span>Position</span><span>P / OF / 1B</span></li>
+                        <li><span>Bats / Throws</span><span>Left / Left</span></li>
+                        <li><span>Grad Year</span><span>2028</span></li>
+                        <li><span>Hometown</span><span>Princeton, TX</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Teams</h3>
+                    <ul class="facts">
+                        <li><span>Travel</span><span>Glory Adkins 18u Demoss</span></li>
+                        <li><span>Previous</span><span>MTX Cardinals 16u</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Achievements</h3>
+                    <ul class="bullets">
+                        <li>2x All-Star Team</li>
+                        <li>Team MVP (2025)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right column -->
+            <div>
+                <div class="card">
+                    <h3>Statistics &mdash; Fall 2025 / Spring 2026</h3>
+                    <div class="stat-block-label">Batting</div>
+                    <div class="stat-grid">
+                        <div class="stat"><div class="val">.577</div><div class="lab">AVG</div></div>
+                        <div class="stat"><div class="val">.662</div><div class="lab">OBP</div></div>
+                        <div class="stat"><div class="val">.889</div><div class="lab">SLG</div></div>
+                        <div class="stat"><div class="val">1.551</div><div class="lab">OPS</div></div>
+                        <div class="stat"><div class="val">14</div><div class="lab">RBI</div></div>
+                    </div>
+                    <div class="stat-block-label" style="margin-top:12px;">Pitching</div>
+                    <div class="stat-grid pitching">
+                        <div class="stat"><div class="val">3.33</div><div class="lab">ERA</div></div>
+                        <div class="stat"><div class="val">4.1</div><div class="lab">IP</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Academics</h3>
+                    <div class="info-row">
+                        <div class="info-block"><div class="k">Weighted GPA</div><div class="v">4.1</div></div>
+                        <div class="info-block"><div class="k">Class Rank</div><div class="v">207 / 754 (Top 30%)</div></div>
+                        <div class="info-block"><div class="k">SAT</div><div class="v">Not Yet Taken</div></div>
+                        <div class="info-block"><div class="k">Intended Major</div><div class="v">Sports Business / Management</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Honors &amp; Activities</h3>
+                    <ul class="bullets two-col-list">
+                        <li>National Honor Society Member</li>
+                        <li>FCCLA &mdash; Captain</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact">
+            <div class="item">
+                <span class="k">Email</span>
+                <span class="v">shannon.hall2028@gmail.com</span>
+            </div>
+            <div class="item">
+                <span class="k">Call or Text</span>
+                <span class="v">(870) 403-7535</span>
+            </div>
+            <div class="qr">
+                <div class="label">
+                    <div class="k">Scan Me</div>
+                    <div class="v">Full Profile &amp; Highlight Videos</div>
+                </div>
+                <img src="assets/stills/site-qr.svg" alt="QR code linking to Shannon Hall's recruiting site">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
