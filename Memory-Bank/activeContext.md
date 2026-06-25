@@ -19,6 +19,17 @@ Integrating real highlight videos into the Videos section, replacing placeholder
 - Footer links now `flex flex-wrap justify-center gap-x-6 gap-y-2`; added `overflow-x-hidden` on `<body>` as a safety net.
 - Verified at 412×915: document scrollWidth == clientWidth (412), zero overflowing elements.
 
+## Session Log — 2026-06-24: Console errors + Tailwind production build
+- Fixed favicon 404: `index.html` referenced `assets/icons/softball-icon.svg`; actual file is `assets/stills/icons/softball-icon.svg`. Corrected path.
+- Fixed "unused preload" warning: removed the leftover Unsplash image preload in `js/main.js` `optimizePerformance()` (image was never rendered). Function kept for future real critical images.
+- Replaced the Tailwind CDN (`cdn.tailwindcss.com`, dev-only, logged a production warning) with a prebuilt, minified stylesheet:
+  - Added `package.json` (scripts: `build:css`, `watch:css`), `tailwind.config.js` (ported inline theme: fonts + custom colors; content scans `index.html` + `js/**/*.js`), `src/input.css`, `.gitignore` (node_modules).
+  - Tailwind pinned to v3 to match the existing v3-style config.
+  - Build output: `dist/style.css` (~20 KB minified). Verified JS-generated classes survive purge (`aspect-[9/16]`, `max-h-[68vh]`, `bg-white/95`, etc.).
+  - `index.html` now loads `dist/style.css` instead of the CDN script + inline config.
+- IMPORTANT for deploy: `dist/style.css` is committed and served as-is (VPS has no build step). After ANY change to classes in `index.html` or `js/*.js`, run `npm run build:css` and commit the updated `dist/style.css`.
+- Verified in browser: full styling intact (custom colors, fonts, layout), favicon loads, page renders correctly.
+
 ## Recent Changes
 - Complete website structure built with all sections
 - Modern, responsive CSS with softball-themed design

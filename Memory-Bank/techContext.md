@@ -20,9 +20,16 @@
 - **Mobile Performance**: Must work well on slower mobile connections
 
 ## Dependencies
-- **None**: Pure HTML/CSS/JS implementation
+- **Tailwind CSS (v3, dev dependency)**: Compiled at build time into `dist/style.css` via the Tailwind CLI. Not loaded from CDN. Build with `npm run build:css` (watch: `npm run watch:css`). `node_modules/` is gitignored; `dist/style.css` IS committed because the VPS serves static files with no build step.
 - **Google Fonts**: For typography (loaded from CDN)
-- **Unsplash**: For placeholder images (via API or direct links)
+- **Runtime JS**: Pure vanilla JS, no frameworks.
+
+## Build / Tooling
+- `package.json` — npm scripts for the CSS build
+- `tailwind.config.js` — theme (fonts + custom colors); `content` scans `index.html` and `js/**/*.js` (the video gallery generates classes inside JS template strings, so JS MUST be in `content` or those classes get purged)
+- `src/input.css` — Tailwind entry (`@tailwind base/components/utilities`)
+- `dist/style.css` — generated, minified, committed output
+- After editing any Tailwind classes in HTML or JS, re-run `npm run build:css` and commit the new `dist/style.css`.
 
 ## File Structure
 ```

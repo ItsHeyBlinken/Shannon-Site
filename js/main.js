@@ -161,11 +161,10 @@ function initLazyLoading() {
 
 // Performance optimization
 function optimizePerformance() {
-    // Preload critical images
-    const criticalImages = [
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
-    ];
-    
+    // Preload critical, above-the-fold images here (relative paths within the site).
+    // Avoid preloading anything not actually rendered, or the browser logs an unused-preload warning.
+    const criticalImages = [];
+
     criticalImages.forEach(src => {
         const link = document.createElement('link');
         link.rel = 'preload';
