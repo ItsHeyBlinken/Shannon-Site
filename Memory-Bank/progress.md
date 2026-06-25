@@ -41,16 +41,16 @@
 
 ## Known Issues
 - 3 highlight videos excluded until compressed (too large for mobile streaming).
-- Several still-image `src`s in `index.html` (hero2.jpg, teammate.jpg, team.jpg, pitching.jpg, coaching.jpg, Skittles Softball Logo.png) point to files not present in `assets/stills/` — broken images until real photos are added.
-- Site has no standalone CSS file; styling is Tailwind (CDN). Video gallery was rebuilt to use Tailwind utilities accordingly.
+- Several still-image `src`s in `index.html` may point to files missing from `assets/stills/` — verify before deploy.
+- Styling is prebuilt Tailwind in `dist/style.css` (not CDN). Rebuild locally after class changes.
 
 ## Completed This Session (2026-06-24)
 - [x] Integrated 9 real highlight videos with orientation-aware cards (16:9 + 9:16)
-- [x] Rebuilt video gallery cards with Tailwind (previously relied on undefined CSS classes)
-- [x] Auto first-frame thumbnails + auto durations from metadata
-- [x] Orientation-adaptive video modal + iOS `playsinline`
-- [x] Remapped category filters to All / At-Bats / Training
-- [x] Browser-verified desktop and mobile (390px)
+- [x] Rebuilt video gallery cards with Tailwind
+- [x] Fixed mobile horizontal scrollbar (412px footer overflow)
+- [x] Fixed favicon 404, removed unused Unsplash preload
+- [x] Tailwind production build (`dist/style.css`); removed CDN
+- [x] Coolify deploy approach documented: Static build pack, repo root, no build command
 
 ## Completed Tasks
 - [x] Project brief creation

@@ -15,51 +15,71 @@ A modern, responsive website designed to showcase Shannon's athletic abilities, 
 ## Technology Stack
 
 - **HTML5**: Semantic markup with accessibility features
-- **CSS3**: Modern styling with CSS Grid, Flexbox, and custom properties
-- **Vanilla JavaScript**: Interactive functionality without external dependencies
-- **Responsive Design**: Mobile-first approach with breakpoints for all devices
+- **Tailwind CSS (v3)**: Utility-first styling, prebuilt into `dist/style.css` for production
+- **Vanilla JavaScript**: Interactive functionality without runtime frameworks
+- **Responsive Design**: Mobile-first approach for coaches on phones and tablets
 
 ## File Structure
 
 ```
 /
 ├── index.html              # Main website page
-├── css/
-│   ├── style.css          # Main stylesheet
-│   └── responsive.css     # Mobile-responsive styles
+├── dist/
+│   └── style.css           # Prebuilt Tailwind output (committed; served in production)
+├── src/
+│   └── input.css           # Tailwind entry file
+├── package.json            # Dev-only: CSS build scripts
+├── tailwind.config.js      # Tailwind theme + content paths
 ├── js/
-│   ├── main.js            # Core functionality
-│   ├── stats.js           # Statistics dashboard
-│   └── video-player.js    # Video gallery and player
-├── images/                # Image assets
-│   ├── action-shots/      # Action photos
-│   └── icons/             # Icon files
-├── videos/                # Video content
-│   ├── batting/           # Batting highlights
-│   ├── fielding/          # Fielding highlights
-│   ├── game-highlights/   # Complete game highlights
-│   ├── skills-showcase/   # Skills demonstrations
-│   └── thumbnails/        # Video thumbnails
-├── assets/                # Downloadable files
-└── Memory-Bank/           # Project documentation
+│   ├── main.js             # Core functionality
+│   ├── stats.js            # Statistics dashboard
+│   └── video-player.js     # Video gallery and player
+├── assets/
+│   ├── stills/             # Photos and icons (incl. favicon)
+│   ├── videos/             # Highlight videos
+│   └── recruiting-packet.pdf
+└── Memory-Bank/            # Project documentation
 ```
 
-## Setup and Deployment
+## Local Development
 
-1. **Local Development**:
-   - Clone or download the repository
-   - Open `index.html` in a web browser
-   - No build process required - pure static files
+1. Clone or download the repository.
+2. Open `index.html` in a browser, or serve locally:
+   ```bash
+   python -m http.server 8123
+   ```
+3. **If you change Tailwind classes** in `index.html` or `js/*.js`, rebuild CSS before committing:
+   ```bash
+   npm install          # first time only
+   npm run build:css    # writes minified dist/style.css
+   npm run watch:css    # optional: rebuild on save while developing
+   ```
+4. Commit the updated `dist/style.css` along with your HTML/JS changes.
 
-2. **VPS Deployment**:
-   - Upload all files to your VPS web directory
-   - Ensure proper file permissions
-   - Configure web server to serve static files
+## Deployment (Coolify)
 
-3. **GitHub Integration**:
-   - Push changes to GitHub repository
-   - VPS can pull updates automatically
-   - Videos and images stored in repository
+This site is a **static** portfolio — no server-side build or Node process in production. CSS is compiled locally and committed as `dist/style.css`.
+
+### Coolify settings
+
+| Setting | Value |
+|---------|-------|
+| **Build Pack** | Static |
+| **Publish / Base Directory** | `/` (repo root — `index.html` lives here, not in `dist/`) |
+| **Build Command** | *(leave empty)* |
+| **Start Command** | *(leave empty)* |
+
+### Why Static, not Nixpacks?
+
+Coolify's Nixpacks build pack auto-detects `package.json` as a Node app and expects `build` / `start` scripts. This project only uses Node **locally** to compile Tailwind. The Static pack serves the committed files via nginx — simpler and correct for this site.
+
+### Deploy workflow
+
+1. Edit locally; run `npm run build:css` if you changed any Tailwind classes.
+2. Commit and push to GitHub (include `dist/style.css` when CSS changed).
+3. Coolify redeploys automatically — no build step on the server.
+
+`node_modules/` is gitignored and not needed on the server. `package.json` is dev-only; the Static pack ignores it.
 
 ## Customization
 
@@ -70,9 +90,8 @@ A modern, responsive website designed to showcase Shannon's athletic abilities, 
 - **Images**: Replace placeholder images with actual photos
 
 ### Styling
-- **Colors**: Modify CSS custom properties in `css/style.css`
-- **Typography**: Update font imports and font-family declarations
-- **Layout**: Adjust grid and flexbox properties as needed
+- **Colors & fonts**: Edit `tailwind.config.js` (theme extend), then run `npm run build:css`
+- **Layout & utilities**: Tailwind classes in `index.html` and `js/video-player.js`; rebuild CSS after changes
 
 ### Contact Information
 - Update email address in contact section

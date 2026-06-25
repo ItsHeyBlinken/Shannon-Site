@@ -30,6 +30,19 @@ Integrating real highlight videos into the Videos section, replacing placeholder
 - IMPORTANT for deploy: `dist/style.css` is committed and served as-is (VPS has no build step). After ANY change to classes in `index.html` or `js/*.js`, run `npm run build:css` and commit the updated `dist/style.css`.
 - Verified in browser: full styling intact (custom colors, fonts, layout), favicon loads, page renders correctly.
 
+## Session Log — 2026-06-24: Coolify deployment decision
+- **Hosting:** Coolify on VPS (e.g. `skittles-softball.bytesbyblinken.com`).
+- **Build pack:** **Static** (not Nixpacks). Nixpacks would auto-detect `package.json` as a Node app and expect `build`/`start` scripts; this site is static HTML with a prebuilt CSS file.
+- **Coolify settings:**
+  - Build Pack: Static
+  - Base / Publish Directory: `/` (repo root — `index.html` is at root, not in `dist/`)
+  - Build Command: *(empty)*
+  - Start Command: *(empty)*
+  - No SPA redirect rules needed (in-page `#` anchor nav only).
+- **Deploy workflow:** edit locally → `npm run build:css` if Tailwind classes changed → commit `dist/style.css` → push → Coolify redeploys static files. No server-side build step.
+- `package.json` / `node_modules` are dev-only; Static pack ignores them (`node_modules` is gitignored).
+- README.md updated with Local Development + Deployment (Coolify) sections (Static pack settings, `npm run build:css` workflow).
+
 ## Recent Changes
 - Complete website structure built with all sections
 - Modern, responsive CSS with softball-themed design

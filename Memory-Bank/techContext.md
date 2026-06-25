@@ -31,31 +31,42 @@
 - `dist/style.css` — generated, minified, committed output
 - After editing any Tailwind classes in HTML or JS, re-run `npm run build:css` and commit the new `dist/style.css`.
 
+## Deployment Process (Coolify — Static build pack)
+1. Develop locally; run `npm run build:css` after any Tailwind class changes in `index.html` or `js/*.js`.
+2. Commit and push to GitHub (include updated `dist/style.css` when CSS changed).
+3. Coolify (Static pack) serves repo root via nginx — no build or start command on the server.
+4. Site updates on redeploy.
+
+**Coolify configuration:**
+| Setting | Value |
+|---------|-------|
+| Build Pack | Static |
+| Publish / Base Directory | `/` (repo root) |
+| Build Command | *(empty)* |
+| Start Command | *(empty)* |
+
+**Do not use Nixpacks** unless you add `build` + `start` scripts and want server-side CSS compilation. Current setup commits prebuilt `dist/style.css` instead.
+
 ## File Structure
 ```
 /
 ├── index.html                 # Main page
-├── css/
-│   ├── style.css             # Main stylesheet
-│   └── responsive.css         # Mobile-specific styles
+├── dist/
+│   └── style.css              # Prebuilt Tailwind output (committed; served in production)
+├── src/
+│   └── input.css              # Tailwind entry file
+├── package.json               # Dev-only: npm run build:css
+├── tailwind.config.js         # Tailwind theme + content paths
 ├── js/
-│   ├── main.js               # Core functionality
-│   ├── stats.js              # Statistics dashboard
-│   └── video-player.js       # Video gallery
-├── images/                   # Static images
-│   ├── hero-photo.jpg
-│   ├── action-shots/
-│   └── icons/
-├── videos/                   # Video files
-│   ├── batting/
-│   ├── fielding/
-│   ├── game-highlights/
-│   └── thumbnails/
-├── assets/                   # PDFs and other files
-└── Memory-Bank/             # Project documentation
+│   ├── main.js
+│   ├── stats.js
+│   └── video-player.js
+├── assets/
+│   ├── stills/                # Photos + icons (incl. favicon)
+│   ├── videos/                # Highlight videos (1920x1080 + 1080x1920)
+│   └── recruiting-packet.pdf
+└── Memory-Bank/
 ```
-
-## Performance Considerations
 - **Image Optimization**: Compressed images, appropriate formats
 - **Video Optimization**: Compressed videos, multiple quality options
 - **CSS Optimization**: Minified in production
@@ -70,13 +81,12 @@
 
 ## Deployment Process
 1. Develop locally
-2. Test across browsers and devices
-3. Commit changes to Git
-4. Push to GitHub repository
-5. VPS pulls latest changes
-6. Site updates automatically
+2. Run `npm run build:css` if Tailwind classes changed; commit `dist/style.css`
+3. Test across browsers and devices
+4. Commit and push to GitHub
+5. Coolify (Static build pack) redeploys from repo root — no server build step
 
-## Future Technical Enhancements
+## Performance Considerations
 - **Service Worker**: Offline functionality
 - **PWA Features**: App-like experience
 - **Analytics**: Google Analytics integration
