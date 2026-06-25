@@ -4,62 +4,28 @@
 const statsData = {
     batting: {
         current: {
-            avg: 0.385,
-            obp: 0.450,
-            slg: 0.620,
-            hr: 15,
-            rbi: 42,
-            sb: 8,
-            ab: 120,
-            hits: 46,
-            runs: 38
+            avg: 0.577,
+            obp: 0.662,
+            slg: 0.889,
+            ops: 1.551,
+            rbi: 14
         },
         previous: {
-            avg: 0.342,
-            obp: 0.398,
-            slg: 0.580,
-            hr: 12,
-            rbi: 35,
-            sb: 6,
-            ab: 110,
-            hits: 38,
-            runs: 32
-        }
-    },
-    fielding: {
-        current: {
-            fpct: 0.965,
-            po: 45,
-            a: 38,
-            e: 3,
-            tc: 86
-        },
-        previous: {
-            fpct: 0.952,
-            po: 42,
-            a: 35,
-            e: 4,
-            tc: 81
+            avg: 0.577,
+            obp: 0.662,
+            slg: 0.889,
+            ops: 1.551,
+            rbi: 14
         }
     },
     pitching: {
         current: {
-            era: 2.85,
-            wl: '8-3',
-            k: 45,
-            whip: 1.25,
-            ip: 65.2,
-            bb: 18,
-            h: 64
+            era: 3.33,
+            ip: 4.1
         },
         previous: {
-            era: 3.20,
-            wl: '6-4',
-            k: 38,
-            whip: 1.35,
-            ip: 58.1,
-            bb: 22,
-            h: 57
+            era: 3.33,
+            ip: 4.1
         }
     }
 };
@@ -354,6 +320,7 @@ function formatStatLabel(stat) {
         'avg': 'Batting Average',
         'obp': 'On-Base Percentage',
         'slg': 'Slugging Percentage',
+        'ops': 'OPS',
         'hr': 'Home Runs',
         'rbi': 'RBI',
         'sb': 'Stolen Bases',

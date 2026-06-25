@@ -43,6 +43,16 @@ Integrating real highlight videos into the Videos section, replacing placeholder
 - `package.json` / `node_modules` are dev-only; Static pack ignores them (`node_modules` is gitignored).
 - README.md updated with Local Development + Deployment (Coolify) sections (Static pack settings, `npm run build:css` workflow).
 
+## Session Log — 2026-06-25: Real Fall 2025–Spring 2026 stats
+- Updated Statistics section with real values; removed non-matching stats.
+  - Batting: BA .577, OBP .662, SLG .889, OPS 1.551 (new), RBI 14. Removed Home Runs + Stolen Bases.
+  - Pitching: ERA 3.33, Innings Pitched 4.1 (new). Removed Wins-Losses, Strikeouts, WHIP.
+  - Removed the entire Fielding tab (button + content) — no fielding stats provided.
+- Hero cards: BA .456→.577, replaced Home Runs card with RBIs 14, GPA 4.1 unchanged.
+- Synced `js/stats.js` `statsData` to match (batting + pitching only, fielding removed); added `ops` to `formatStatLabel`. Note: season-comparison feature was already non-functional (references `.tab-btn.active` which doesn't exist); previous values mirror current as placeholders.
+- Added season label under the Statistics heading: "Fall 2025 – Spring 2026 Season".
+- Rebuilt `dist/style.css`; no lint errors.
+
 ## Recent Changes
 - Complete website structure built with all sections
 - Modern, responsive CSS with softball-themed design
